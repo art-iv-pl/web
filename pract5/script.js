@@ -60,7 +60,7 @@ Truck.prototype.trip = function() {
     }
 };
 
-var truck1 = new Truck("red", 4000, 50, "BMV", "X4");
+var truck1 = new Truck("red", 4000, 60, "BMV", "X4");
 truck1.AssignDriver("Mike Smith", true, 10);
 truck1.trip(); 
 var truck2 = new Truck("green", 6000, 55, "Audi","A6");
