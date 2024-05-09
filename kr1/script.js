@@ -54,6 +54,16 @@ const myCircle = new SimpleCircle(5);
 console.log(myCircle);
 
 const myEllipse = new SimpleEllipse(7, 3);
+
+function SubGenerator(number) {
+    return function(subtrahend) {
+        return subtrahend - number;
+    };
+}
+
+const subtractFive = SubGenerator(5); 
+console.log(subtractFive(10)); 
+console.log(subtractFive(8)); 
 console.log(myEllipse);
 console.log("Площа еліпса:", SimpleEllipse.CalculateArea(myEllipse.majorRadius, myEllipse.minorRadius));
 
