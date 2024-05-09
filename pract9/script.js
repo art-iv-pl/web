@@ -22,13 +22,13 @@ arr1.forEach(item => console.log(item));
 
 arr1.splice(arr1.indexOf(5), 1, 8);
 
-arr1.splice(arr1.indexOf(4), 0, "Hello");{
+arr1.splice(arr1.indexOf(4), 0, "Hello");
 
 let arr2 = arr1.filter(item => typeof item === 'function');
-}
+
 arr2.forEach(item => console.log(item));
 
-let arr3 = arr1.slice(0, 3).concat(arr1.slice(4, 5));
+let arr3 = arr1.filter(item => typeof item === 'number' && ![5, 4].includes(item));
 
 arr3.forEach(item => console.log(item));
 
@@ -48,10 +48,10 @@ for (let index in arr1) {
     console.log(arr1[index]);
 }
 
-for (let index in arr1) {
-    if (typeof arr1[index] === 'object') {
-        for (let key in arr1[index]) {
-            console.log(key + ': ' + arr1[index][key]);
+for (let item of arr1) {
+    if (typeof item === 'object') {
+        for (let key in item) {
+            console.log(key + ': ' + item[key]);
         }
     }
 }
@@ -100,6 +100,7 @@ console.log(map1.has("Volodyk"));
 for (let key of map1.keys()) {
     console.log(key);
 }
+
 map1.delete("Mychajlyk");
 
 for (let [key, value] of map1) {
@@ -113,6 +114,7 @@ let Antypko = {
     skill: "PHP",
     level: "senior"
 };
+set1.add(Antypko);
 
 console.log(set1.has(Antypko));
 
@@ -121,8 +123,9 @@ console.log(set1.has(Mychajlyk));
 for (let item of set1) {
     console.log(item);
 }
+
 set1.delete(Volodyk);
 
-for (let item of set1) 
+for (let item of set1) {
     console.log(`${item.name} is ${item.level} in ${item.skill}`);
-
+}
