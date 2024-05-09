@@ -22,10 +22,10 @@ arr1.forEach(item => console.log(item));
 
 arr1.splice(arr1.indexOf(5), 1, 8);
 
-arr1.splice(arr1.indexOf(4), 0, "Hello");
+arr1.splice(arr1.indexOf(4), 0, "Hello");{
 
 let arr2 = arr1.filter(item => typeof item === 'function');
-
+}
 arr2.forEach(item => console.log(item));
 
 let arr3 = arr1.slice(0, 3).concat(arr1.slice(4, 5));
