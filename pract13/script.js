@@ -63,7 +63,7 @@ function startTimer(specifiedTime) {
             if (remainingTime <= 0) {
                 clearInterval(timerInterval);
                 const finalScore = document.getElementById('score').textContent;
-                alert(Time's up! Your final score is: ${finalScore}. Congratulations! To start a new game, please refresh the page.);
+                alert(`Time's up! Your final score is: ${finalScore}. Congratulations! To start a new game, please refresh the page.`);
                 gameActive = false;
             }
             remainingTime--;
