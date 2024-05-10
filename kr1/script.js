@@ -1,4 +1,4 @@
-//Варіант-2
+// Варіант-2
 function TriangleArea(base = 7, height = 3) {
     const area = 0.5 * base * height;
     console.log("Площа трикутника:", area);
@@ -22,12 +22,10 @@ Boat.prototype.AssignCaptain = function(name, yearsOfExperience, hasFamily) {
     };
 };
 
-
 class SimpleCircle {
     constructor(majorRadius) {
         this.majorRadius = majorRadius;
     }
-
 
     set MajorRadius(value) {
         this.majorRadius = value;
@@ -43,8 +41,11 @@ class SimpleEllipse extends SimpleCircle {
     static CalculateArea(majorRadius, minorRadius) {
         return Math.PI * majorRadius * minorRadius;
     }
-}
 
+    square() {
+        return Math.PI * this.majorRadius * this.minorRadius;
+    }
+}
 
 const myBoat = new Boat("Blue", 30, 100, "Bark", "USA");
 myBoat.AssignCaptain("John Doe", 10, true);
@@ -54,6 +55,8 @@ const myCircle = new SimpleCircle(5);
 console.log(myCircle);
 
 const myEllipse = new SimpleEllipse(7, 3);
+console.log(myEllipse);
+console.log("Площа еліпса:", SimpleEllipse.CalculateArea(myEllipse.majorRadius, myEllipse.minorRadius));
 
 function SubGenerator(number) {
     return function(subtrahend) {
@@ -64,7 +67,5 @@ function SubGenerator(number) {
 const subtractFive = SubGenerator(5); 
 console.log(subtractFive(10)); 
 console.log(subtractFive(8)); 
-console.log(myEllipse);
-console.log("Площа еліпса:", SimpleEllipse.CalculateArea(myEllipse.majorRadius, myEllipse.minorRadius));
 
 
