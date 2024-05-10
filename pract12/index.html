@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pract12</title>
+    <title>pract12</title></title>
 </head>
 <body>
     <h1>Практична робота No12 Палійчук Артур Іванович </h1>
@@ -14,7 +14,7 @@
         <label for="email">Електронна пошта:</label>
         <input type="email" id="email" name="email"><br><br>
         
-        <label>Оберіть прийом їжі:</label><br>
+        <label>Оберіть прийоми їжі:</label><br>
         <input type="radio" id="breakfast" name="meal" value="Сніданок">
         <label for="breakfast">Сніданок</label><br>
         <input type="radio" id="lunch" name="meal" value="Обід">
@@ -23,21 +23,21 @@
         <label for="dinner">Вечеря</label><br><br>
         
         <label>Оберіть страви:</label><br>
-        <input type="checkbox" id="borshch" name="dish" value="Борщ">
+        <input type="checkbox" id="borshch" name="food" value="Борщ">
         <label for="borshch">Борщ</label><br>
-        <input type="checkbox" id="porridge" name="dish" value="Вівсяна каша">
-        <label for="porridge">Вівсяна каша</label><br>
-        <input type="checkbox" id="pasta" name="dish" value="Паста Болоньєзе">
+        <input type="checkbox" id="oatmeal" name="food" value="Вівсяна каша">
+        <label for="oatmeal">Вівсяна каша</label><br>
+        <input type="checkbox" id="pasta" name="food" value="Паста Болоньєзе">
         <label for="pasta">Паста Болоньєзе</label><br>
-        <input type="checkbox" id="pizza" name="dish" value="Піца">
+        <input type="checkbox" id="pizza" name="food" value="Піца">
         <label for="pizza">Піца</label><br>
-        <input type="checkbox" id="shashlik" name="dish" value="Шашлик">
+        <input type="checkbox" id="shashlik" name="food" value="Шашлик">
         <label for="shashlik">Шашлик</label><br><br>
         
         <label for="comment">Коментар:</label><br>
         <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br><br>
         
-        <button type="button" onclick="submitForm()">Надіслати</button>
+        <button type="button" id="submitButton">Надіслати</button>
     </form>
 
     <div id="result"></div>
