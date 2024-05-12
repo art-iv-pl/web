@@ -1,48 +1,46 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f0f0; 
+    font-family: 'Roboto', sans-serif; 
+    background-color: #f0f0f0;
     margin: 0;
     padding: 0;
 }
 
 h1 {
     font-size: 24px;
-    color: #333; 
-    margin-top: 20px; 
+    color: #333;
 }
 
 #gameContainer {
     text-align: center;
-    margin-top: 50px; 
+    margin-top: 50px;
 }
 
 #gameBoard {
-    margin: 20px auto; 
+    margin: 20px auto;
     border-collapse: collapse;
 }
 
 td {
     width: 60px;
     height: 60px;
-    background-color: #ccc; 
+    background-color: #ccc;
     border: 1px solid #000;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .lightOn {
-    background-color: #008080; 
+    background-color: #000080;
 }
-
 .lightOff {
-    background-color: #66CDAA;
+    background-color: #87CEFA;
 }
 
 button {
     padding: 10px 20px;
-    margin: 10px;
-    background-color: #333; 
-    color: white; 
+    margin: 5px;
+    background-color: #333;
+    color: white;
     border: 2px solid #333;
     border-radius: 5px;
     cursor: pointer;
@@ -51,39 +49,6 @@ button {
 }
 
 button:hover {
-    background-color: #666; 
+    background-color: #666;
     border-color: #666;
 }
-
-
-#newGameButton {
-    background-color: #ff6347;
-    border-color: #ff6347;
-}
-
-#newGameButton:hover {
-    background-color: #ff7f50;
-    border-color: #ff7f50;
-}
-
-#minStepsLabel {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin-top: 20px;
-}
-
-#currentStepsLabel {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin-top: 20px;
-}
-
-#gameTimeLabel {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin-top: 20px;
-}
-
