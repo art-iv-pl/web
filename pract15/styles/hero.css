@@ -1,0 +1,225 @@
+.header {
+    background-color: white;
+    color: #20B2AA;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: inherit;
+    margin: 0 auto;
+}
+
+.logotype {
+    display: flex;
+}
+
+.logo-img {
+    width: 120px;
+    height: 120px;
+    margin-right: 5px;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10px;
+    position: relative;
+    top: -20px;
+}
+
+.logo-name {
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 10px 0;
+    text-transform: uppercase;
+    text-shadow: #20B2AA 2px 2px;
+}
+
+.logo-name a {
+    color: inherit;
+}
+
+.family-logo-img {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+.logotype-family {
+    display: flex;
+}
+
+.name-logo-family {
+    line-height: 30px;
+    color: black;
+    font-weight: 700;
+    padding-left: 5px;
+    text-transform: uppercase;
+}
+
+
+.navbar {
+    display: flex;
+    font-weight: 600;
+}
+
+.navbar-content ul {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.navbar-content ul > li {
+    margin: 0 10px;
+    display: flex;
+    min-height: 60px;
+    background-position: top 5px left 50%;
+    background-size: 35px;
+    background-repeat: no-repeat;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: #20B2AA;
+    transition: all 0.25s ease;
+    font-size: 1em;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.navbar-content ul > li:hover {
+    background-color: #20B2AA;
+    color: white;
+}
+
+.navbar-content ul > li:first-child {
+    background-image: url("../image/catalog_icon.png");
+}
+
+.navbar-content ul > li:nth-child(2) {
+    background-image: url("../image/about_icon.png");
+}
+
+.navbar-content ul > li:last-child {
+    background-image: url("../image/awards_icon.png");
+}
+
+.link-catalog,
+.link-about,
+.link-awards {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.link-number {
+    display: flex;
+    color: #20B2AA;
+    font-size: 1.5rem;
+    line-height: 30px;
+    font-weight: inherit;
+    transition: all 0.25s ease;
+    padding: 5px 0 5px 5px;
+    border-radius: 5px;
+}
+
+.link-number::before {
+    content: "";
+    align-self: center;
+    background: url("../image/phone_icon.png") no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+}
+
+.link-number:hover {
+    background-color: #20B2AA;
+    color: white;
+}
+
+
+.communication {
+    width: fit-content;
+    padding: 5px 0;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.communication p {
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 0 7px;
+}
+
+.main-content .communication {
+    display: none;
+}
+
+@media (max-width: 1200px) and (min-width: 992px) {
+    .logo-img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 992px) and (min-width: 769px) {
+    .logo-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .logo-name {
+        font-size: 24px;
+    }
+
+    .communication p {
+        font-size: 16px;
+        margin-left: 90px;
+    }
+
+    .logo-img {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .communication {
+        display: none;
+    }
+
+    .main-content .communication {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .link-number {
+        width: 100%;
+        background-color: #FFFFFF;
+        border: solid 3px #20B2AA;
+        border-radius: 5px;
+        justify-content: center;
+    }
+
+    .communication p {
+        color: #20B2AA;
+    }
+
+    .logo-img {
+        display: none;
+    }
+
+    .logo-name {
+        font-size: 20px;
+    }
+}
