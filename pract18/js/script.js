@@ -5,38 +5,33 @@ let slideIndex = 0;
 
 function showSlides(index) {
     const slides = document.querySelectorAll('.slide-card');
+    if (index >= slides.length) {
+        slideIndex = 0;
+    } else if (index < 0) {
+        slideIndex = slides.length - 1;
+    }
     slides.forEach((slide, i) => {
-        slide.style.display = i === index ? "block" : "none";
+        if (i === slideIndex) {
+            slide.style.display = "block";
+        } else {
+            slide.style.display = "none";
+        }
     });
 }
 
-function decreaseIndex() {
+prevButton.addEventListener('click', () => {
     slideIndex--;
-    if (slideIndex < 0) {
-        slideIndex = document.querySelectorAll('.slide-card').length - 1;
-    }
     showSlides(slideIndex);
-}
+});
 
-function increaseIndex() {
+nextButton.addEventListener('click', () => {
     slideIndex++;
-    if (slideIndex >= document.querySelectorAll('.slide-card').length) {
-        slideIndex = 0;
-    }
     showSlides(slideIndex);
-}
-
-prevButton.addEventListener('click', decreaseIndex);
-nextButton.addEventListener('click', increaseIndex);
-
-function autoSlide() {
-    slideIndex++;
-    if (slideIndex >= document.querySelectorAll('.slide-card').length) {
-        slideIndex = 0;
-    }
-    showSlides(slideIndex);
-}
+});
 
 showSlides(slideIndex);
 
-setInterval(autoSlide, 3000);
+setInterval(() => {
+    slideIndex++;
+    showSlides(slideIndex);
+}, 3000);
