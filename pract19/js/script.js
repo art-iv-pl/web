@@ -1,3 +1,37 @@
+// AJAX
+
+(function (global) {
+    let contentAjax = {};
+    const snippetHomeHTML = "./snippets/home-snippet.html";
+    const containerAjaxSelector = ".conteiner-ajax";
+
+    const insertHTML = (selector, html) => {
+        document.querySelector(selector).innerHTML = html;
+    };
+
+    const showLoading = (selector) => {
+        document.querySelector(selector).innerHTML = `
+        <div class="insert-loader">
+            <span class="loader"></span>
+        </div>`;
+    };
+
+    document.addEventListener("DOMContentLoaded", (event) => {
+        showLoading(containerAjaxSelector);
+        setTimeout(() => {
+          ajaxUtils.sendGetRequest(
+            snippetHomeHTML,
+            (response) => {
+                insertHTML(containerAjaxSelector, response);
+                showSlides(slideIndex);
+            },
+            false
+          );
+        }, 1000);
+      });
+      global.contentAjax = contentAjax;
+})(window);
+
 // BURGER//
 function toggleBurger() {
     const burger = document.querySelector('.burger');
