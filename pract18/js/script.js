@@ -1,69 +1,51 @@
-// BURGER//
-function toggleBurger() {
-    const burger = document.querySelector('.burger');
-    burger.classList.toggle('active');
+// BURGER
+
+function toggleMenu() {
+    var menuIcon = document.querySelector('.menu-icon');
+    menuIcon.classList.toggle('active');
+
+    var burgerMenu = document.querySelector('.burger');
+    burgerMenu.classList.toggle('active');
 }
+document.querySelector('.menu-icon').addEventListener('click', toggleMenu);
 
-function hideBurger(event) {
-    const burger = document.querySelector('.burger');
-    const target = event.target;
-    const isMenuIcon = target.classList.contains('menu-icon');
-    const isBurger = target.classList.contains('burger');
-    const isPhoneNumber = target.classList.contains('link-number');
 
-    if (!isMenuIcon && !isBurger && !isPhoneNumber) {
-        burger.classList.remove('active');
-    }
-}
+// SLIDER 
 
-document.addEventListener('DOMContentLoaded', function() {
-    const menuIcon = document.querySelector('.menu-icon');
-    const phoneNumber = document.querySelector('.link-number');
-
-    menuIcon.addEventListener('click', toggleBurger);
-    document.addEventListener('click', hideBurger);
-
-});
-
- //SLIDER//
+const slider = document.querySelector('.slider-wrapper');
 const prevButton = document.querySelector('.prev-btn');
 const nextButton = document.querySelector('.next-btn');
 let slideIndex = 0;
 
 function showSlides(index) {
     const slides = document.querySelectorAll('.slide-card');
+    if (index >= slides.length) {
+        slideIndex = 0;
+    } else if (index < 0) {
+        slideIndex = slides.length - 1;
+    }
     slides.forEach((slide, i) => {
-        slide.style.display = i === index ? "block" : "none";
+        if (i === slideIndex) {
+            slide.style.display = "block";
+        } else {
+            slide.style.display = "none";
+        }
     });
 }
 
-function decreaseIndex() {
+prevButton.addEventListener('click', () => {
     slideIndex--;
-    if (slideIndex < 0) {
-        slideIndex = document.querySelectorAll('.slide-card').length - 1;
-    }
     showSlides(slideIndex);
-}
+});
 
-function increaseIndex() {
+nextButton.addEventListener('click', () => {
     slideIndex++;
-    if (slideIndex >= document.querySelectorAll('.slide-card').length) {
-        slideIndex = 0;
-    }
     showSlides(slideIndex);
-}
-
-prevButton.addEventListener('click', decreaseIndex);
-nextButton.addEventListener('click', increaseIndex);
-
-function autoSlide() {
-    slideIndex++;
-    if (slideIndex >= document.querySelectorAll('.slide-card').length) {
-        slideIndex = 0;
-    }
-    showSlides(slideIndex);
-}
+});
 
 showSlides(slideIndex);
 
-setInterval(autoSlide, 3000);
+setInterval(() => {
+    slideIndex++;
+    showSlides(slideIndex);
+}, 3000);
