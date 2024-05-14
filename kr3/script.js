@@ -18,73 +18,89 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
 
-    const operationButtons = document.querySelectorAll('.operation-button');
-    operationButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            const operation = this.getAttribute('data-operation');
-            const op1 = parseFloat(op1Input.value);
-            const op2 = parseFloat(op2Input.value);
-            let result;
+    function performOperation(operation, op1, op2) {
+        switch (operation) {
+            case 'add':
+                return op1 + op2;
+            case 'sub':
+                return op1 - op2;
+            case 'mul':
+                return op1 * op2;
+            case 'div':
+                return op1 / op2;
+        }
+    }
 
-            switch (operation) {
-                case 'add':
-                    result = op1 + op2;
-                    break;
-                case 'sub':
-                    result = op1 - op2;
-                    break;
-                case 'mul':
-                    result = op1 * op2;
-                    break;
-                case 'div':
-                    if (op2 === 0 || isNaN(op2)) {
-                        displayError('Cannot be divided by 0!');
-                        return;
-                    } else {
-                        result = op1 / op2;
-                    }
-                    break;
-            }
+    function calculateTrigonometric(operation, op1) {
+        switch (operation) {
+            case 'log':
+                if (op1 <= 0 || isNaN(op1)) {
+                    displayError('Operand 1 is less or equal to 0');
+                    return;
+                }
+                return Math.log(op1);
+            case 'sin':
+                return Math.sin(op1 * Math.PI / 180);
+            case 'tan':
+                return Math.tan(op1 * Math.PI / 180);
+        }
+    }
 
-            displayResult(result);
-        });
+    function fetchAndDisplayInfo(operation) {
+        fetch(`${operation}.json`)
+            .then(response => response.json())
+            .then(data => {
+                infoDiv.innerHTML = `<h3>${data.name}</h3><p>${data.description}</p><img src="${data.image_name}" alt="${data.name}">`;
+            })
+            .catch(error => console.error(`Error fetching ${operation} info:`, error));
+    }
+
+    document.getElementById('add-button').addEventListener('click', function() {
+        const result = performOperation('add', parseFloat(op1Input.value), parseFloat(op2Input.value));
+        displayResult(result);
     });
 
-    const trigButtons = document.querySelectorAll('.trig-button');
-    trigButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            const operation = this.getAttribute('data-operation');
-            const op1 = parseFloat(op1Input.value);
-            let result;
+    document.getElementById('sub-button').addEventListener('click', function() {
+        const result = performOperation('sub', parseFloat(op1Input.value), parseFloat(op2Input.value));
+        displayResult(result);
+    });
 
-            if (isNaN(op1)) {
-                displayError('Invalid input');
-                return;
-            }
+    document.getElementById('mul-button').addEventListener('click', function() {
+        const result = performOperation('mul', parseFloat(op1Input.value), parseFloat(op2Input.value));
+        displayResult(result);
+    });
 
-            switch (operation) {
-                case 'log':
-                    if (op1 <= 0) {
-                        displayError('Operand 1 is less or equal to 0');
-                        return;
-                    }
-                    result = Math.log(op1);
-                    break;
-                case 'sin':
-                    result = Math.sin(op1 * Math.PI / 180);
-                    break;
-                case 'tan':
-                    result = Math.tan(op1 * Math.PI / 180);
-                    break;
-            }
-
+    document.getElementById('div-button').addEventListener('click', function() {
+        const op2 = parseFloat(op2Input.value);
+        if (op2 === 0 || isNaN(op2)) {
+            displayError('Cannot be divided by 0!');
+        } else {
+            const result = performOperation('div', parseFloat(op1Input.value), op2);
             displayResult(result);
-            fetch(`${operation}.json`)
-                .then(response => response.json())
-                .then(data => {
-                    infoDiv.innerHTML = `<h3>${data.name}</h3><p>${data.description}</p><img src="${data.image_name}" alt="${data.name}">`;
-                })
-                .catch(error => console.error(`Error fetching ${operation} info:`, error));
-        });
+        }
+    });
+
+    document.getElementById('log-button').addEventListener('click', function() {
+        const result = calculateTrigonometric('log', parseFloat(op1Input.value));
+        if (result !== undefined) {
+            displayResult(result);
+            fetchAndDisplayInfo('log');
+        }
+    });
+
+    document.getElementById('sin-button').addEventListener('click', function() {
+        const result = calculateTrigonometric('sin', parseFloat(op1Input.value));
+        if (result !== undefined) {
+            displayResult(result);
+            fetchAndDisplayInfo('sin');
+        }
+    });
+
+    document.getElementById('tan-button').addEventListener('click', function() {
+        const result = calculateTrigonometric('tan', parseFloat(op1Input.value));
+        if (result !== undefined) {
+            displayResult(result);
+            fetchAndDisplayInfo('tan');
+        }
     });
 });
