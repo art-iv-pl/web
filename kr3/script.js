@@ -1,100 +1,80 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const op1Input = document.getElementById('op1');
-    const op2Input = document.getElementById('op2');
-    const resultOutput = document.getElementById('result');
-    const infoDiv = document.getElementById('info');
+    const addButton = document.getElementById('add-button');
+    const subButton = document.getElementById('sub-button');
+    const mulButton = document.getElementById('mul-button');
+    const divButton = document.getElementById('div-button');
+    const logButton = document.getElementById('log-button');
+    const sinButton = document.getElementById('sin-button');
+    const tanButton = document.getElementById('tan-button');
 
-    function displayResult(resultValue) {
-        resultOutput.textContent = 'Result: ' + resultValue;
-        infoDiv.innerHTML = '';
-    }
+    addButton.addEventListener('click', calculate);
+    subButton.addEventListener('click', calculate);
+    mulButton.addEventListener('click', calculate);
+    divButton.addEventListener('click', calculate);
+    logButton.addEventListener('click', calculateTrig);
+    sinButton.addEventListener('click', calculateTrig);
+    tanButton.addEventListener('click', calculateTrig);
 
-    function displayError(errorMessage) {
-        resultOutput.textContent = 'Error: ' + errorMessage;
-        infoDiv.innerHTML = '';
-    
-        setTimeout(function() {
-            resultOutput.textContent = '';
-        }, 3000);
-    }
+    function calculate() {
+        const op1 = parseFloat(document.getElementById('op1').value);
+        const op2 = parseFloat(document.getElementById('op2').value);
+        const operator = this.textContent;
 
-    function calculate(operation, calculateFunc) {
-        const operand1 = parseFloat(op1Input.value);
-        const operand2 = parseFloat(op2Input.value);
-        
-        if (isNaN(operand1) || isNaN(operand2)) {
-            displayError('Invalid input');
-            return;
+        let result;
+        switch (operator) {
+            case 'Add':
+                result = op1 + op2;
+                break;
+            case 'Subtract':
+                result = op1 - op2;
+                break;
+            case 'Multiply':
+                result = op1 * op2;
+                break;
+            case 'Divide':
+                if (op2 === 0) {
+                    result = 'Error: Division by zero';
+                } else {
+                    result = op1 / op2;
+                }
+                break;
         }
 
-        const result = calculateFunc(operand1, operand2);
-        displayResult(result);
+        document.getElementById('result').textContent = `Result: ${result}`;
     }
 
-    document.getElementById('add-button').addEventListener('click', function() {
-        calculate('addition', (x, y) => x + y);
-    });
+    function calculateTrig() {
+        const op1 = parseFloat(document.getElementById('op1').value);
+        const operator = this.textContent;
 
-    document.getElementById('sub-button').addEventListener('click', function() {
-        calculate('subtraction', (x, y) => x - y);
-    });
-
-    document.getElementById('mul-button').addEventListener('click', function() {
-        calculate('multiplication', (x, y) => x * y);
-    });
-
-    document.getElementById('div-button').addEventListener('click', function() {
-        const divisor = parseFloat(op2Input.value);
-        if (divisor === 0 || isNaN(divisor)) {
-            displayError('Cannot be divided by 0!');
-        } else {
-            calculate('division', (x, y) => x / y);
-        }
-    });
-
-    function calculateUnary(operationName, calculateFunc) {
-        const operand = parseFloat(op1Input.value);
-        if (isNaN(operand)) {
-            displayError('Invalid input');
-            return;
-        }
-
-        const result = calculateFunc(operand);
-        displayResult(result);
-        loadInfo(operationName + '.json');
-    }
-
-    document.getElementById('log-button').addEventListener('click', function() {
-        calculateUnary('logarithm', Math.log);
-    });
-
-    function calculateTrigonometric(operationName, calculateFunc) {
-        const operand = parseFloat(op1Input.value);
-        if (isNaN(operand)) {
-            displayError('Invalid input');
-            return;
-        }
-
-        const radians = operand * Math.PI / 180;
-        const result = calculateFunc(radians);
-        displayResult(result);
-        loadInfo(operationName + '.json');
-    }
-
-    document.getElementById('sin-button').addEventListener('click', function() {
-        calculateTrigonometric('sine', Math.sin);
-    });
-
-    document.getElementById('tan-button').addEventListener('click', function() {
-        calculateTrigonometric('tangent', Math.tan);
-    });
-
-    function loadInfo(fileName) {
-        fetch(fileName)
-            .then(response => response.json())
-            .then(data => {
-                infoDiv.innerHTML = `<h3>${data.name}</h3><p>${data.description}</p><img src="${data.image_name}" alt="${data.name}">`;
+        fetch(`/help/${operator.toLowerCase()}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
             })
-            .catch(error => console.error('Error fetching info:', error));
+            .then(data => {
+                document.getElementById('info').innerHTML = `
+                    <h4>${data.name}</h4>
+                    <p>${data.description}</p>
+                    <img src="${data.image_name}" alt="${data.name}">
+                `;
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+
+        switch (operator) {
+            case 'Logarithm':
+                document.getElementById('result').textContent = `Result: ${Math.log(op1)}`;
+                break;
+            case 'Sine':
+                document.getElementById('result').textContent = `Result: ${Math.sin(op1 * Math.PI / 180)}`;
+                break;
+            case 'Tangent':
+                document.getElementById('result').textContent = `Result: ${Math.tan(op1 * Math.PI / 180)}`;
+                break;
+        }
     }
 });
