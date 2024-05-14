@@ -3,30 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
+    <title>kr3</title>
 </head>
 <body>
-    <h1>Calculator</h1>
-    <label for="operand1">Operand 1:</label>
-    <input type="number" id="operand1">
-    <br>
-    <label for="operand2">Operand 2:</label>
-    <input type="number" id="operand2">
-    <br>
-    <label for="operation">Select operation:</label>
-    <select id="operation">
-        <option value="sum">Sum</option>
-        <option value="difference">Difference</option>
-        <option value="product">Product</option>
-        <option value="quotient">Quotient</option>
-        <option value="logarithm">Logarithm</option>
-        <option value="sine">Sine</option>
-        <option value="tangent">Tangent</option>
-    </select>
-    <br>
-    <button onclick="calculate()">Calculate</button>
-    <h3 id="result"></h3>
+    <h1>Контрольна робота №3</h1>
+    <h2>Палійчук Артур Іванович</h2>
 
-    <script src="script.js"></script>
+    <div class="calculator">
+        <label for="op1">Operand 1:</label>
+        <input id="op1" type="text">
+        <label for="op2">Operand 2:</label>
+        <input id="op2" type="text">
+        <h3 id="result">Result</h3> 
+        <button id="add-button">Add</button>
+        <button id="sub-button">Subtract</button>
+        <button id="mul-button">Multiply</button>
+        <button id="div-button">Divide</button>
+        <button id="log-button">Logarithm</button>
+        <button id="sin-button">Sine</button>
+        <button id="tan-button">Tangent</button>
+        <div id="info"></div>
+    </div>
 </body>
 </html>
