@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>kr3</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
 </head>
 <body>
-    <h1>Контрольна робота №3</h1>
-    <h2>Палійчук Артур Іванович</h2>
-  
-    <div class="calculator">
-        <input type="text" id="op1" placeholder="Enter first number">
-        <input type="text" id="op2" placeholder="Enter second number">
-        <button id="add-button">+</button>
-        <button id="sub-button">-</button>
-        <button id="mul-button">*</button>
-        <button id="div-button">/</button>
-        <button id="log-button">ln</button>
-        <button id="sin-button">sin</button>
-        <button id="tan-button">tan</button>
-        <h3 id="result"></h3> 
-        <div id="info"></div>
-    </div>
+    <h1>Calculator</h1>
+    <label for="operand1">Operand 1:</label>
+    <input type="number" id="operand1">
+    <br>
+    <label for="operand2">Operand 2:</label>
+    <input type="number" id="operand2">
+    <br>
+    <label for="operation">Select operation:</label>
+    <select id="operation">
+        <option value="sum">Sum</option>
+        <option value="difference">Difference</option>
+        <option value="product">Product</option>
+        <option value="quotient">Quotient</option>
+        <option value="logarithm">Logarithm</option>
+        <option value="sine">Sine</option>
+        <option value="tangent">Tangent</option>
+    </select>
+    <br>
+    <button onclick="calculate()">Calculate</button>
+    <h3 id="result"></h3>
+
     <script src="script.js"></script>
 </body>
 </html>
-
