@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function calculateTrigFunction(funcName) {
         const op1 = parseFloat(op1Input.value);
         if (isNaN(op1)) {
-            displayError('Invalid input');
+            displayError('Division by 0');
             return;
         }
         if (op1 <= 0 && funcName === 'log') {
