@@ -1,5 +1,5 @@
 body {
-    font-family: 'Roboto', sans-serif; 
+    font-family: 'Roboto', sans-serif;
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
@@ -32,7 +32,6 @@ td {
 .lightOn {
     background-color: #000080;
 }
-
 
 button {
     padding: 10px 20px;
