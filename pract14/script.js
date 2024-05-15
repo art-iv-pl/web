@@ -63,7 +63,7 @@ function toggleLights(r, c, grid) {
     if (checkWin(grid)) {
         clearInterval(timer);
         setTimeout(function() {
-            alert("Вітаю! Ви завершили гру!");
+            alert("Congratulations! You have completed the game!");
             restart();
         }, 1000);
     }
