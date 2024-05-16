@@ -17,16 +17,16 @@
     transition: transform 0.4s, opacity 0.4s, background-color 0.4s;
 }
 
-.menu-icon.active .line1 {
-    transform: translateX(-10px); 
+.menu-icon.burger.active .line1 {
+  transform: rotate(45deg) translate(5px, 5px);
 }
 
-.menu-icon.active .line2 {
-    opacity: 0;
+.menu-icon.burger.active .line2 {
+  opacity: 0;
 }
 
-.menu-icon.active .line3 {
-    transform: translateX(10px); 
+.menu-icon.burger.active .line3 {
+  transform: rotate(-45deg) translate(7px, -6px);
 }
 
 .burger {
