@@ -7,7 +7,20 @@ function toggleMenu() {
     var burgerMenu = document.querySelector('.burger');
     burgerMenu.classList.toggle('active');
 }
+
+function closeMenuOnClickOutside(event) {
+    var burgerMenu = document.querySelector('.burger');
+    var menuIcon = document.querySelector('.menu-icon');
+
+    if (!burgerMenu.contains(event.target) && !menuIcon.contains(event.target)) {
+        burgerMenu.classList.remove('active');
+        menuIcon.classList.remove('active');
+    }
+}
+
 document.querySelector('.menu-icon').addEventListener('click', toggleMenu);
+document.addEventListener('click', closeMenuOnClickOutside);
+
 
 
 // SLIDER 
