@@ -4,36 +4,30 @@
     position: relative;
     cursor: pointer;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-direction: row; 
+    justify-content: space-around;
 }
 
-.menu-icon div {
-    width: 4px;
-    height: 100%;
-    background-color: #ff00aa;
+.line1,
+.line2,
+.line3 {
+    width: 8px;
+    height: 8px;
+    background-color: #20B2AA;
     transition: transform 0.4s, opacity 0.4s, background-color 0.4s;
 }
 
-.menu-icon.active .bar1 {
-    transform: rotate(45deg) translateY(6px); /* Перша лінія */
-    background-color: #b4008d;
+.menu-icon.active .line1 {
+    transform: translateX(-10px); 
 }
 
-.menu-icon.active .bar2 {
-    opacity: 0; /* Друга лінія */
+.menu-icon.active .line2 {
+    opacity: 0;
 }
 
-.menu-icon.active .bar3 {
-    transform: rotate(-45deg) translateY(-6px); /* Третя лінія */
-    background-color: #b4008d;
+.menu-icon.active .line3 {
+    transform: translateX(10px); 
 }
-
-.menu-icon.active .bar4 {
-    transform: rotate(90deg) translateY(-18px); /* Четверта лінія */
-    background-color: #b4008d;
-}
-
 
 .burger {
     display: none;
@@ -56,15 +50,15 @@
 }
 
 .content ul > li {
-    color: #ff00d4;
+    color: #F0E68C;
     font-size: 18px;
     font-weight: 600;
 }
 
 .content ul > li:hover {
-    background-color: #ff00d4;
+    background-color: #008B8B;
     color: white;
-    animation: fadeIn .4s forwards; 
+    animation: fadeIn 0.4s forwards; 
 }
 
 .burger .navbar-categories li {
@@ -98,19 +92,19 @@
 }
 
 .burger .navbar-categories li .burger-link-home::before {
-    background-image: url("../image/icons8-home.svg");
+    background-image: url("../image/home.png");
 }
 
 .burger .navbar-categories li .burger-link-catalog::before {
-    background-image: url("../image/catalog_icon_215654.svg");
+    background-image: url("../image/catalog_icon.png");
 }
 
 .burger .navbar-categories li .burger-link-about::before {
-    background-image: url("../image/4213426-about-description-help-info-information-notification_115427.svg");
+    background-image: url("../image/about_icon.png");
 }
 
 .burger .navbar-categories li .burger-link-awards::before {
-    background-image: url("../image/manyawards_83828.svg");
+    background-image: url("../image/awards_icon.png");
 }
 
 @media (min-width: 769px) {
