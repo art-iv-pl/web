@@ -25,40 +25,43 @@ document.addEventListener('click', closeMenuOnClickOutside);
 
 // SLIDER 
 
-const slider = document.querySelector('.slider-wrapper');
-const prevButton = document.querySelector('.prev-btn');
-const nextButton = document.querySelector('.next-btn');
-let slideIndex = 0;
+function createSlider(wrapperSelector, prevButtonSelector, nextButtonSelector) {
+    const sliderWrapper = document.querySelector(wrapperSelector);
+    const prevButton = document.querySelector(prevButtonSelector);
+    const nextButton = document.querySelector(nextButtonSelector);
+    let slideIndex = 0;
 
-function showSlides(index) {
-    const slides = document.querySelectorAll('.slide-card');
-    if (index >= slides.length) {
-        slideIndex = 0;
-    } else if (index < 0) {
-        slideIndex = slides.length - 1;
-    }
-    slides.forEach((slide, i) => {
-        if (i === slideIndex) {
-            slide.style.display = "block";
-        } else {
-            slide.style.display = "none";
+    function showSlides(index) {
+        const slides = sliderWrapper.querySelectorAll('.slide-card');
+        if (index >= slides.length) {
+            slideIndex = 0;
+        } else if (index < 0) {
+            slideIndex = slides.length - 1;
         }
-    });
+        slides.forEach((slide, i) => {
+            slide.style.display = (i === slideIndex) ? "block" : "none";
+        });
+    }
+
+    function showPrevSlide() {
+        slideIndex--;
+        showSlides(slideIndex);
+    }
+
+    function showNextSlide() {
+        slideIndex++;
+        showSlides(slideIndex);
+    }
+
+    prevButton.addEventListener('click', showPrevSlide);
+    nextButton.addEventListener('click', showNextSlide);
+
+    setInterval(() => {
+        slideIndex++;
+        showSlides(slideIndex);
+    }, 3500);
+
+    showSlides(slideIndex);
 }
 
-prevButton.addEventListener('click', () => {
-    slideIndex--;
-    showSlides(slideIndex);
-});
-
-nextButton.addEventListener('click', () => {
-    slideIndex++;
-    showSlides(slideIndex);
-});
-
-showSlides(slideIndex);
-
-setInterval(() => {
-    slideIndex++;
-    showSlides(slideIndex);
-}, 3000);
+createSlider('.slider-wrapper', '.prev-btn', '.next-btn');
