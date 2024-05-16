@@ -3,9 +3,6 @@
     height: 30px;
     position: relative;
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
 }
 
 .menu-icon div {
@@ -15,19 +12,30 @@
     transition: transform 0.4s, opacity 0.4s, background-color 0.4s;
 }
 
-.menu-icon.active .bar1 {
-    transform: translateY(10px) rotate(45deg);
-    background-color: #008B8B;
+.menu-icon .line1 {
+    transform-origin: center;
 }
 
-.menu-icon.active .bar2 {
+.menu-icon .line2 {
+    margin: 6px 0;
+}
+
+.menu-icon .line3 {
+    transform-origin: center;
+}
+
+.menu-icon.active .line1 {
+    transform: translateY(10px) rotate(45deg);
+}
+
+.menu-icon.active .line2 {
     opacity: 0;
 }
 
-.menu-icon.active .bar3 {
+.menu-icon.active .line3 {
     transform: translateY(-10px) rotate(-45deg);
-    background-color: #008B8B;
 }
+
 
 
 .burger {
