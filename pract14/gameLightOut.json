@@ -1,32 +1,32 @@
 [
   {
-    "initial_state": [
+    "gameState": [
       [1, 1, 1, 1, 1],
       [0, 0, 1, 0, 0],
       [1, 0, 1, 0, 1],
       [1, 0, 1, 1, 1],
       [0, 1, 0, 0, 1]
     ],
-    "minimum_steps_to_win": 7
+    "minStepsToWin": 7
   },
   {
-    "initial_state": [
+    "gameState": [
       [1, 0, 1, 0, 0],
       [0, 1, 1, 1, 1],
       [0, 0, 1, 1, 0],
       [0, 0, 1, 0, 0],
       [0, 1, 1, 1, 0]
     ],
-    "minimum_steps_to_win": 8
+    "minStepsToWin": 8
   },
   {
-    "initial_state": [
+    "gameState": [
       [1, 0, 0, 0, 0],
       [0, 1, 1, 0, 1],
       [1, 0, 0, 1, 1],
       [0, 0, 1, 1, 1],
       [1, 1, 0, 0, 0]
     ],
-    "minimum_steps_to_win": 9
+    "minStepsToWin": 9
   }
 ]
