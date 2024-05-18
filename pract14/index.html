@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lights Out Game</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lights Out</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="container" id="game-container"></div>
-<div id="info">
-  <p>Target: <span id="minSteps">0</span></p>
-  <p>Moves: <span id="currentSteps">0</span></p>
-  <p>Time: <span id="gameTime">0</span> sec</p>
-</div>
-<button onclick="newGame()">New Game</button>
-<button onclick="restartGame()">Restart Game</button>
-<script src="script.js"></script>
+    <div id="game-container">
+        <div id="grid"></div>
+        <div id="controls">
+            <button onclick="newGame()">New Game</button>
+            <button onclick="restartGame()">Restart Game</button>
+            <p>Target: <span id="minSteps">0</span></p>
+            <p>Moves: <span id="currentSteps">0</span></p>
+            <p>Time: <span id="gameTime">0</span> sec</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
