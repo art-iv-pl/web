@@ -10,6 +10,9 @@ body {
 
 #game-container {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #grid {
@@ -40,11 +43,11 @@ body {
 }
 
 #controls {
-    margin-top: 20px; 
+    margin-top: 20px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
-    flex-wrap: wrap; 
 }
 
 button {
