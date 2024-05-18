@@ -1,35 +1,43 @@
-.container {
-  display: grid;
-  grid-template-columns: repeat(5, 50px);
-  grid-template-rows: repeat(5, 50px);
-  gap: 5px;
-  margin-bottom: 20px;
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
 }
 
-.container div {
-  width: 50px;
-  height: 50px;
-  background-color: #eeeeee;
-  border: 1px solid #cccccc;
+#game-container {
+    text-align: center;
 }
 
-.container div.on {
-  background-color: yellow;
+#grid {
+    display: grid;
+    grid-template-columns: repeat(5, 50px);
+    grid-gap: 5px;
+    margin-bottom: 20px;
 }
 
-#info {
-  text-align: center;
-  margin-bottom: 10px;
+.cell {
+    width: 50px;
+    height: 50px;
+    background-color: #444;
+    cursor: pointer;
+}
+
+.cell.on {
+    background-color: #ff0;
+}
+
+#controls {
+    margin-top: 20px;
 }
 
 button {
-  display: block;
-  margin: 0 auto;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
+    margin: 5px;
 }
 
-button:hover {
-  background-color: #dddddd;
+p {
+    margin: 5px;
 }
