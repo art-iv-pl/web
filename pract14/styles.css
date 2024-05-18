@@ -10,10 +10,6 @@ body {
 
 #game-container {
     text-align: center;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #grid {
@@ -48,6 +44,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 10px;
+    align-items: center; 
 }
 
 button {
