@@ -43,10 +43,18 @@ body {
     display: flex;
     justify-content: center;
     gap: 10px;
+    position: relative; 
+    z-index: 1; 
+}
+
+button.new-game,
+button.restart {
+    width: 120px; 
+    z-index: 2; 
 }
 
 button {
-    padding: 4px 8px;
+    padding: 8px 12px; 
     background-color: #7f8c8d;
     color: #fff;
     border: none;
