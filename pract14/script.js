@@ -1,80 +1,95 @@
-let gameData = []; 
-let currentGameIndex = 0;
-let steps = 0; 
+let grid = [];
+let timerInterval;
 let startTime;
+let stepsCount = 0;
+let targetSteps = 0;
+let initialGrid;
 
+const gridSize = 5;
 
-function loadGameData() {
-  fetch('gameLightOut.json')
-    .then(response => response.json())
-    .then(data => {
-      gameData = data;
-      renderGame();
-    })
-    .catch(error => console.error('Error loading game data:', error));
-}
+document.addEventListener('DOMContentLoaded', () => {
+    newGame();
+});
 
-function renderGame() {
-  const container = document.getElementById('game-container');
-  container.innerHTML = ''; 
+function createGrid(gridData) {
+    const gridElement = document.getElementById('grid');
+    gridElement.innerHTML = '';
+    grid = [];
 
-  const currentGame = gameData[currentGameIndex];
-  const gameState = currentGame.gameState;
-  const minSteps = currentGame.minStepsToWin;
-
-  document.getElementById('minSteps').textContent = minSteps;
-  document.getElementById('currentSteps').textContent = steps;
-
-
-  startTime = Date.now();
-
-  for (let i = 0; i < gameState.length; i++) {
-    for (let j = 0; j < gameState[i].length; j++) {
-      const cell = document.createElement('div');
-      cell.className = gameState[i][j] === 1 ? 'on' : '';
-      cell.onclick = () => {
-        toggleCellState(i, j);
-        steps++;
-        document.getElementById('currentSteps').textContent = steps;
-      };
-      container.appendChild(cell);
+    for (let row = 0; row < gridSize; row++) {
+        const gridRow = [];
+        for (let col = 0; col < gridSize; col++) {
+            const cell = document.createElement('div');
+            cell.className = 'cell' + (gridData[row][col] ? ' on' : '');
+            cell.dataset.row = row;
+            cell.dataset.col = col;
+            cell.addEventListener('click', () => toggleLights(row, col));
+            gridElement.appendChild(cell);
+            gridRow.push(cell);
+        }
+        grid.push(gridRow);
     }
-  }
-  steps = 0; /
 }
 
-function toggleCellState(row, col) {
-  const currentGame = gameData[currentGameIndex];
-  const gameState = currentGame.gameState;
-
-  gameState[row][col] = 1 - gameState[row][col]; // Зміна стану клітинки (0 -> 1, 1 -> 0)
-
-
-  if (row > 0) gameState[row - 1][col] = 1 - gameState[row - 1][col];
-  if (row < 4) gameState[row + 1][col] = 1 - gameState[row + 1][col];
-  if (col > 0) gameState[row][col - 1] = 1 - gameState[row][col - 1];
-  if (col < 4) gameState[row][col + 1] = 1 - gameState[row][col + 1];
-
-  renderGame();
+function toggleLights(row, col) {
+    toggleCell(row, col);
+    toggleCell(row - 1, col);
+    toggleCell(row + 1, col);
+    toggleCell(row, col - 1);
+    toggleCell(row, col + 1);
+    stepsCount++;
+    document.getElementById('currentSteps').innerText = stepsCount;
+    checkWin();
 }
 
+function toggleCell(row, col) {
+    if (row >= 0 && row < gridSize && col >= 0 && col < gridSize) {
+        const cell = grid[row][col];
+        cell.classList.toggle('on');
+    }
+}
+
+function checkWin() {
+    const allOff = grid.every(row => row.every(cell => !cell.classList.contains('on')));
+    if (allOff) {
+        clearInterval(timerInterval);
+        const status = document.getElementById('status');
+        if (stepsCount <= targetSteps) {
+            alert(`Congratulations! You solved it in ${stepsCount} steps.`);
+        } else {
+            alert(`Good job! You solved it in ${stepsCount} steps, but you can do better! Target steps: ${targetSteps}.`);
+        }
+    }
+}
 
 function newGame() {
-  currentGameIndex = Math.floor(Math.random() * gameData.length); 
-  renderGame();
+    fetch('gameLightOut.json')
+        .then(response => response.json())
+        .then(data => {
+            const randomGame = data.games[Math.floor(Math.random() * data.games.length)];
+            initialGrid = randomGame.grid;
+            targetSteps = randomGame.targetSteps;
+            document.getElementById('minSteps').innerText = targetSteps;
+            createGrid(initialGrid);
+            resetTimer();
+            stepsCount = 0;
+            document.getElementById('currentSteps').innerText = stepsCount;
+        });
 }
 
 function restartGame() {
-  renderGame();
+    createGrid(initialGrid);
+    resetTimer();
+    stepsCount = 0;
+    document.getElementById('currentSteps').innerText = stepsCount;
 }
 
-
-function updateTimer() {
-  const currentTime = Math.floor((Date.now() - startTime) / 1000); 
-  document.getElementById('gameTime').textContent = currentTime;
+function resetTimer() {
+    clearInterval(timerInterval);
+    startTime = Date.now();
+    document.getElementById('gameTime').innerText = 0;
+    timerInterval = setInterval(() => {
+        const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+        document.getElementById('gameTime').innerText = elapsedTime;
+    }, 1000);
 }
-
-window.onload = function () {
-  loadGameData();
-  setInterval(updateTimer, 1000);
-};
